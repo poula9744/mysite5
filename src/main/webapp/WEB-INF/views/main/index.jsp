@@ -15,7 +15,7 @@
 
 		<div id="header" class="clearfix">
 			<h1>
-				<a href="">MySite</a>
+				<a href="">${pageContext.request.contextPath}</a>
 			</h1>
 
 			<!-- 
