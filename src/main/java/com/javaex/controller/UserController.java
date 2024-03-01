@@ -23,7 +23,7 @@ public class UserController {
 		
 		userService.exeLogin(userVo);
 		
-		return "";
+		return "redirect:/main";
 	}
 	
 	//로그인 폼
@@ -34,6 +34,7 @@ public class UserController {
 		return "/user/loginForm";
 	}
 	
+	//회원가입 폼
 	@RequestMapping(value="/user/joinform", method= {RequestMethod.GET, RequestMethod.POST})
 	public String joinForm() {
 		System.out.println("UserController.joinForm()");

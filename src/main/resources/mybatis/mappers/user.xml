@@ -4,6 +4,12 @@
 
 <mapper namespace="user">
 
-	<!-- 쿼리문 작성 -->
+	<!-- 로그인 -->
+	<select id="login" resultType="com.javaex.vo.UserVo" parameterType="com.javaex.vo.UserVo">
+		select no, name
+		from users 
+		where id= #{id}
+		and password=#{password}
+	</select>
 
 </mapper>
