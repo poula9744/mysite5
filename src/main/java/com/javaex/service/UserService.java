@@ -19,4 +19,11 @@ public class UserService {
 		userDao.userSelectByIdPw(userVo);
 		
 	}
+	
+	//회원가입
+	public void exeJoin(UserVo userVo) {
+		System.out.println("UserService.exeJoin()");
+		
+		userDao.userJoin(userVo);
+	}
 }

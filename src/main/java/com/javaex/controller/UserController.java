@@ -34,6 +34,18 @@ public class UserController {
 		return "/user/loginForm";
 	}
 	
+	//회원가입
+	@RequestMapping(value="/user/join", method= {RequestMethod.GET, RequestMethod.POST})
+	public String join(@ModelAttribute UserVo userVo) {
+		System.out.println("UserController.join()");
+		System.out.println(userVo);
+		
+		userService.exeJoin(userVo);
+		
+		return "/user/joinOk";
+	}
+	
+	
 	//회원가입 폼
 	@RequestMapping(value="/user/joinform", method= {RequestMethod.GET, RequestMethod.POST})
 	public String joinForm() {

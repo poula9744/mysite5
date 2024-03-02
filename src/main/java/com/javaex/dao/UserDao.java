@@ -1,5 +1,7 @@
 package com.javaex.dao;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.UserVo;
@@ -7,10 +9,25 @@ import com.javaex.vo.UserVo;
 @Repository
 public class UserDao {
 
+	@Autowired
+	private SqlSession sqlSession;
+	
 	//로그인
-	public void userSelectByIdPw(UserVo userVo) {
+	public UserVo userSelectByIdPw(UserVo userVo) {
 		System.out.println("UserDao.userSelectByIdPw()");
 		
-		System.out.println(userVo);
+		UserVo authUser = sqlSession.selectOne("login", userVo);
+		System.out.println(authUser);
+		
+		return authUser;
+	}
+	
+	//회원가입
+	public int userJoin(UserVo userVo) {
+		System.out.println("UserDao.userJoin()");
+		
+		int count = sqlSession.insert("join", userVo);
+		
+		return count;
 	}
 }
