@@ -39,6 +39,8 @@ erEncoding=UTF-8" />
 		<property name="password" value="1234" />
 
 	</bean>
+	
+	
 
 	<!-- JdbcTemplate -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
