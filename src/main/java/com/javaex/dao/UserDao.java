@@ -30,4 +30,15 @@ public class UserDao {
 		
 		return count;
 	}
+	
+	//회원 정보 수정
+	public int userModify(UserVo userVo) {
+		System.out.println("UserDao.userModify()");
+		
+		int count = sqlSession.update("user.modify", userVo);
+		System.out.println(count);
+		
+		return count;
+	}
+	
 }

@@ -13,11 +13,12 @@ public class UserService {
 	private UserDao userDao;
 	
 	//로그인
-	public void exeLogin(UserVo userVo) {
+	public UserVo exeLogin(UserVo userVo) {
 		System.out.println("UserService.exeLogin()");
 		
-		userDao.userSelectByIdPw(userVo);
+		UserVo authUser = userDao.userSelectByIdPw(userVo);
 		
+		return authUser;
 	}
 	
 	//회원가입
@@ -26,4 +27,12 @@ public class UserService {
 		
 		userDao.userJoin(userVo);
 	}
+	
+	//회원 정보 수정
+	public void exeModify(UserVo userVo) {
+		System.out.println("UserService.exeModify()");
+		
+		userDao.userModify(userVo);
+	}
+	
 }

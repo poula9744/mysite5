@@ -6,10 +6,12 @@
 
 	<!-- 로그인 -->
 	<select id="login" resultType="com.javaex.vo.UserVo" parameterType="com.javaex.vo.UserVo">
-		select no, name
-		from users 
-		where id= #{id}
-		and password=#{password}
+		<![CDATA[
+			select no, id, password, name, gender
+			from users 
+			where id= #{id}
+			and password=#{password}
+		]]>
 	</select>
 
 	<!-- 회원가입 -->
@@ -21,4 +23,16 @@
 		 	   #{name}, 
 		 	   #{gender})
 	</insert>
+	
+	<!-- 회원정보수정 -->
+	<update id="modify" parameterType="com.javaex.vo.UserVo">
+		<![CDATA[
+			update users
+			set name= #{name},
+				password= #{password},
+				gender= #{gender}
+			where id= #{id} 
+		]]>
+	</update>
+	
 </mapper>

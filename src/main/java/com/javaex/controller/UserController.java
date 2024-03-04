@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,11 +19,13 @@ public class UserController {
 	
 	//로그인
 	@RequestMapping(value="/user/login", method= {RequestMethod.GET, RequestMethod.POST})
-	public String login(@ModelAttribute UserVo userVo) {
+	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("UserController.login()");
 		System.out.println(userVo);
 		
-		userService.exeLogin(userVo);
+		UserVo authUser = userService.exeLogin(userVo);
+		
+		session.setAttribute("authUser", authUser);
 		
 		return "redirect:/main";
 	}
@@ -53,4 +57,38 @@ public class UserController {
 		
 		return "/user/joinForm";
 	}
+	
+	//수정
+	@RequestMapping(value="/user/modify", method= {RequestMethod.GET, RequestMethod.POST})
+	public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
+		System.out.println("UserController.modify()");
+		
+		userService.exeModify(userVo);
+		System.out.println(userVo);
+	
+		// 세션에 수정된 사용자 정보 업데이트
+		session.setAttribute("authUser", userVo);
+		
+		return "redirect:/main";
+	}
+	
+	
+	//수정폼
+	@RequestMapping(value="/user/modifyform", method= {RequestMethod.GET, RequestMethod.POST})
+	public String modifyForm() {
+		System.out.println("UserController.modifyForm()");
+		
+		return "/user/modifyForm";
+	}
+	
+	//로그아웃
+	@RequestMapping(value="/user/logout", method= {RequestMethod.GET, RequestMethod.POST})
+	public String logout(HttpSession session) {
+		System.out.println("UserController.logout()");
+		
+		session.invalidate();
+		
+		return "redirect:/main";
+	}
+	
 }
