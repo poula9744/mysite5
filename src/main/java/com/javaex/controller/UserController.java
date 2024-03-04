@@ -25,9 +25,14 @@ public class UserController {
 		
 		UserVo authUser = userService.exeLogin(userVo);
 		
-		session.setAttribute("authUser", authUser);
-		
-		return "redirect:/main";
+		if(authUser != null) {
+			session.setAttribute("authUser", authUser);
+			return "redirect:/main";
+		} else {
+			System.out.println("로그인 실패");
+			return "redirect:/user/loginform";
+		}
+	
 	}
 	
 	//로그인 폼

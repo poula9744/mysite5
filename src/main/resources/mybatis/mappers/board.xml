@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	
+	<!-- 전체 리스트 -->
+	<select id="select" resultType="com.javaex.vo.BoardVo">
+		select no, 
+			   title, 
+			   name, 
+			   hits, 
+			   reg_date as regDate,
+			   content
+		from board 
+	</select>
+	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="com.javaex.vo.BoardVo">
+		delete from board
+		where no = #{no}
+	</delete>
+	
+	<!-- 등록 -->
+	<insert id="insert" parameterType="com.javaex.vo.BoardVo">
+		insert into board
+		values(null, 
+			  #{title}, 
+			  #{name}, 
+			  0, 
+			  now(), 
+			  #{content}
+			  ) 
+	</insert>
+	
+	<!-- 한 명 데이터 읽기 -->
+	<select id="selectOne" parameterType="int" resultType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			select name,
+		   		   hits,
+	      		   reg_date as regDate,
+	       		   title,
+	       		   content
+			from board
+			where no = #{no}
+		]]>
+	</select>
+	
+	<!-- 수정 -->
+	<update id="modify" parameterType="com.javaex.vo.BoardVo">
+		update board
+		set title = #{title},
+			content = #{content}
+		where no = #{no};
+	</update>
+	
+
+</mapper>
