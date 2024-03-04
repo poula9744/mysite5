@@ -62,7 +62,8 @@ public class BoardController {
 	public String boardRead(@RequestParam(value = "no") int no, Model model) {
 		System.out.println("BoardController.boardRead()");
 		
-		BoardVo boardVo = boardService.exeSelectOne(no);	
+		BoardVo boardVo = boardService.exeSelectOne(no);
+		boardService.exeHitsUpdate(boardVo);
 		model.addAttribute("boardVo", boardVo);
 		
 		return "/board/read";

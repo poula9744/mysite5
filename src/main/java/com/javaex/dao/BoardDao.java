@@ -63,4 +63,15 @@ public class BoardDao {
 		return count;
 	}
 	
+
+	//조회수 업데이트
+	public int hitsUpdate(BoardVo boardVo) {
+		System.out.println("BoardDao.hitsUpdate()");
+		
+		int count = sqlSession.update("board.UpdateHits", boardVo);
+		System.out.println(count);
+		
+		return count;
+	}
+	
 }

@@ -50,8 +50,14 @@
 		update board
 		set title = #{title},
 			content = #{content}
-		where no = #{no};
+		where no = #{no}
 	</update>
 	
+	<!-- 조회수 업데이트 -->
+	<update id="UpdateHits">
+		update board 
+		set hits = hits + 1
+		where no = #{no}
+	</update>
 
 </mapper>

@@ -58,4 +58,13 @@ public class BoardService {
 		
 		return count;
 	}
+	
+	//조회수 업데이트
+	public int exeHitsUpdate(BoardVo boardVo) {
+		System.out.println("BoardService.exeHitsUpdate()");
+		
+		int count = boardDao.boardModify(boardVo);
+		
+		return count;
+	}
 }
